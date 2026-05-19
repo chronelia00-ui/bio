@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Chronelia | Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #7979be;
+      --btn-bg: rgba(255,255,255,0.15);
+      --btn-border: rgba(255,255,255,0.25);
+      --btn-text: #ffffff;
+      --radius: 28px;
+      --gap: 14px;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+      cursor: url('assets/cursor.png'), auto;
+    }
+
+    a, button, [role="link"], [role="button"], input, label, select {
+      cursor: url('assets/cursor_click.png'), pointer !important;
+    }
+
+    /* Layer 1 — blurred fill */
+    .bg-blur {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-blur video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(20px) brightness(0.5);
+      transform: scale(1.15);
+    }
+
+    /* Layer 2 — portrait video, full visible, no crop */
+    .bg-portrait {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .bg-portrait video {
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+    }
+
+    /* Slight tint over portrait video so text readable */
+    .bg-portrait::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.12);
+    }
+
+    /* Layer PC — full cover, hidden on mobile */
+    .bg-pc {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-pc video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .bg-tint {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.12);
+    }
+
+    @media (min-width: 769px) {
+      .bg-blur    { display: none; }
+      .bg-portrait { display: none; }
+      .bg-pc      { display: block; }
+    }
+
+    /* Main layout */
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 96px var(--gap) 64px;
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    /* Name */
+    .profile-name {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    /* Social icons row */
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+    .social-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: transform 0.15s;
+      text-decoration: none;
+    }
+    .social-btn:hover { transform: scale(1.075); }
+    .social-btn svg { width: 32px; height: 32px; fill: currentColor; }
+
+    /* Links */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+
+    .link-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      padding: 12px 64px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--btn-text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 0 8px rgba(0,0,0,0.08);
+      cursor: pointer;
+    }
+    .link-btn:hover { background: rgba(255,255,255,0.25); }
+    .link-btn:active { transform: scale(0.98); }
+
+    .link-icon {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .link-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .link-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ffffff;
+      word-break: break-word;
+    }
+
+
+    @media (max-width: 768px) {
+      .container {
+        max-width: min(100%, calc(100svh * 9 / 16 - 40px));
+      }
+    }
+
+    @media (min-width: 576px) {
+      .container { padding-top: 80px; }
+      .page { padding-top: 40px; }
+      .link-btn { font-size: 16px; }
+      .link-label { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Layer 1: blurred background -->
+  <div class="bg-blur">
+    <video autoplay loop muted playsinline>
+      <source src="assets/bg-mobile.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Layer PC: full cover landscape -->
+  <div class="bg-pc">
+    <video autoplay loop muted playsinline>
+      <source src="assets/bg-pc.mp4" type="video/mp4">
+    </video>
+    <div class="bg-tint"></div>
+  </div>
+
+  <!-- Layer 2: portrait video full visible -->
+  <div class="bg-portrait">
+    <video autoplay loop muted playsinline>
+      <source src="assets/bg-mobile.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="page">
+    <div class="container">
+
+      <!-- Avatar -->
+      <img class="avatar"
+        src="assets/avatar.png"
+        alt="Chronelia">
+
+      <!-- Name -->
+      <h1 class="profile-name">Chronelia</h1>
+
+      <!-- Social icons -->
+      <div class="socials">
+
+        <!-- YouTube -->
+        <a class="social-btn" href="https://www.youtube.com/@Chronelia" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.8142 5.41679C20.6763 5.64906 21.3541 6.32675 21.5832 7.18581C22 8.74483 22 11.9997 22 11.9997C22 11.9997 22 15.2545 21.5832 16.8136C21.3509 17.6757 20.6733 18.3535 19.8142 18.5825C18.2551 18.9993 12 18.9993 12 18.9993C12 18.9993 5.74801 18.9993 4.18581 18.5825C3.32358 18.3502 2.64588 17.6726 2.4168 16.8136C2 15.2545 2 11.9997 2 11.9997C2 11.9997 2 8.74483 2.4168 7.18581C2.64907 6.32358 3.32676 5.64588 4.18581 5.41679C5.74801 5 12 5 12 5C12 5 18.2551 5 19.8142 5.41679ZM15.1961 11.9992L10.0004 14.9994V8.99883L15.1961 11.9992Z"/></svg>
+        </a>
+
+        <!-- Instagram -->
+        <a class="social-btn" href="https://www.instagram.com/CHRONELIA_CH" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2C9.2912 2 8.94131 2 7.86907 2.05643C7.03985 2.07241 6.21934 2.22888 5.44244 2.51919C4.78781 2.77878 4.23476 3.11738 3.67043 3.68172C3.11738 4.23476 2.76749 4.78781 2.51919 5.45372C2.27088 6.08578 2.10158 6.80813 2.05643 7.88036C2.01129 8.94131 2 9.27991 2 12C2 14.7088 2 15.0474 2.05643 16.1196C2.10158 17.1919 2.28217 17.9255 2.51919 18.5576C2.77878 19.2122 3.11738 19.7652 3.67043 20.3296C4.23476 20.8826 4.78781 21.2325 5.44244 21.4808C6.08578 21.7291 6.80813 21.8984 7.86907 21.9436C8.94131 21.9887 9.27991 22 12 22C14.7088 22 15.0474 22 16.1196 21.9436C17.1806 21.8984 17.9142 21.7178 18.5463 21.4808C19.2137 21.2306 19.8184 20.8377 20.3183 20.3296C20.8826 19.7652 21.2212 19.2009 21.4695 18.5576C21.7178 17.9142 21.8871 17.1919 21.9436 16.1196C21.9887 15.0587 22 14.7201 22 12C22 9.2912 21.9887 8.9526 21.9436 7.88036C21.9225 7.05065 21.7622 6.23037 21.4695 5.45372C21.2189 4.78649 20.8261 4.18182 20.3183 3.68172C19.754 3.11738 19.2122 2.77878 18.5463 2.51919C17.7686 2.23315 16.9482 2.08051 16.1196 2.06772C15.0474 2.01129 14.7088 2 12 2ZM11.0971 3.80587H12C14.6637 3.80587 14.9797 3.80587 16.0406 3.8623C16.6724 3.8686 17.2985 3.98313 17.8916 4.2009C18.3657 4.38149 18.693 4.59594 19.0429 4.94582C19.3928 5.29571 19.6072 5.63431 19.7991 6.09706C19.9345 6.45824 20.0925 6.97743 20.1377 7.95937C20.1828 9.00903 20.1941 9.32506 20.1941 12C20.1941 14.6637 20.1941 14.9797 20.1377 16.0406C20.1314 16.6724 20.0169 17.2985 19.7991 17.8916C19.6185 18.3657 19.3928 18.693 19.0429 19.0429C18.7043 19.3928 18.3657 19.6072 17.8916 19.7878C17.2992 20.0094 16.6731 20.1278 16.0406 20.1377C14.9797 20.1828 14.6637 20.1941 12 20.1941C9.32506 20.1941 9.00903 20.1941 7.95937 20.1377C7.3238 20.1322 6.69388 20.0177 6.09706 19.7991C5.63431 19.6072 5.307 19.3928 4.94582 19.0429C4.60722 18.7043 4.38149 18.3657 4.2009 17.8916C3.98313 17.2985 3.8686 16.6724 3.8623 16.0406C3.80587 14.9797 3.79458 14.6637 3.79458 12C3.79458 9.32506 3.80587 9.00903 3.85102 7.95937C3.85602 7.32375 3.97057 6.69376 4.18962 6.09706C4.38149 5.63431 4.59594 5.307 4.94582 4.94582C5.29571 4.60722 5.62302 4.38149 6.09706 4.2009C6.69376 3.98185 7.32375 3.86731 7.95937 3.8623C8.87359 3.81716 9.23476 3.80587 11.0971 3.79458V3.80587ZM17.3386 5.46501C17.1815 5.46501 17.0259 5.49596 16.8808 5.55608C16.7356 5.6162 16.6037 5.70433 16.4926 5.81542C16.3815 5.92652 16.2934 6.05841 16.2333 6.20356C16.1732 6.34871 16.1422 6.50429 16.1422 6.6614C16.1422 6.81851 16.1732 6.97408 16.2333 7.11924C16.2934 7.26439 16.3815 7.39628 16.4926 7.50737C16.6037 7.61847 16.7356 7.70659 16.8808 7.76672C17.0259 7.82684 17.1815 7.85779 17.3386 7.85779C17.6559 7.85779 17.9602 7.73174 18.1846 7.50737C18.4089 7.28301 18.535 6.9787 18.535 6.6614C18.535 6.3441 18.4089 6.03979 18.1846 5.81542C17.9602 5.59106 17.6559 5.46501 17.3386 5.46501ZM12 6.86456C11.3256 6.86456 10.6578 6.99739 10.0348 7.25547C9.41169 7.51355 8.84556 7.89182 8.36869 8.36869C7.89182 8.84556 7.51355 9.41169 7.25547 10.0348C6.99739 10.6578 6.86456 11.3256 6.86456 12C6.86456 12.6744 6.99739 13.3422 7.25547 13.9652C7.51355 14.5883 7.89182 15.1544 8.36869 15.6313C8.84556 16.1082 9.41169 16.4864 10.0348 16.7445C10.6578 17.0026 11.3256 17.1354 12 17.1354C13.362 17.1354 14.6682 16.5944 15.6313 15.6313C16.5944 14.6682 17.1354 13.362 17.1354 12C17.1354 10.638 16.5944 9.33178 15.6313 8.36869C14.6682 7.40561 13.362 6.86456 12 6.86456ZM12 8.67043C12.4372 8.67043 12.8702 8.75655 13.2742 8.92388C13.6781 9.0912 14.0452 9.33646 14.3544 9.64564C14.6635 9.95482 14.9088 10.3219 15.0761 10.7258C15.2434 11.1298 15.3296 11.5628 15.3296 12C15.3296 12.4372 15.2434 12.8702 15.0761 13.2742C14.9088 13.6781 14.6635 14.0452 14.3544 14.3544C14.0452 14.6635 13.6781 14.9088 13.2742 15.0761C12.8702 15.2434 12.4372 15.3296 12 15.3296C11.1169 15.3296 10.2701 14.9788 9.64564 14.3544C9.02122 13.7299 8.67043 12.8831 8.67043 12C8.67043 11.1169 9.02122 10.2701 9.64564 9.64564C10.2701 9.02122 11.1169 8.67043 12 8.67043Z"/></svg>
+        </a>
+
+        <!-- TikTok -->
+        <a class="social-btn" href="https://www.tiktok.com/@chronelia00" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M15.9453 8.68918V15.6727C15.9453 19.1598 13.1048 22.0004 9.6177 22.0004C8.27369 22.0004 7.01685 21.5717 5.99251 20.8525C4.35796 19.7047 3.29004 17.8085 3.29004 15.6727C3.29004 12.1783 6.12333 9.34505 9.6104 9.34505C9.90101 9.34505 10.1843 9.36685 10.4676 9.40318V12.9121H10.4386C10.3151 12.8758 10.1843 12.8394 10.0536 12.8177H9.9954C9.86466 12.8032 9.74114 12.7813 9.60309 12.7813C8.00491 12.7813 6.70448 14.0817 6.70448 15.6799C6.70448 17.2782 8.00491 18.5786 9.60309 18.5786C11.2014 18.5786 12.5018 17.2782 12.5018 15.6799V2.00037H15.938C15.938 2.29822 15.9671 2.58881 16.0179 2.87213C16.2649 4.1798 17.035 5.30584 18.1175 6.01053C18.873 6.50452 19.7593 6.78785 20.7182 6.78785V10.2241C18.9416 10.2241 17.288 9.65222 15.9453 8.68918Z"/></svg>
+        </a>
+
+        <!-- Discord -->
+        <a class="social-btn" href="https://discord.gg/BUeCUhu9" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <svg viewBox="0 0 24 24"><path d="M19.6361 5.06633C18.1907 4.40458 16.6648 3.93511 15.0973 3.66992C14.8828 4.05335 14.6888 4.44785 14.5159 4.85177C12.8463 4.60017 11.1484 4.60017 9.47881 4.85177C9.30587 4.44789 9.1118 4.0534 8.8974 3.66992C7.32897 3.93735 5.80205 4.40794 4.35518 5.06979C1.48276 9.31959 0.70409 13.4638 1.09342 17.5492C2.77558 18.7921 4.6584 19.7373 6.66003 20.3438C7.11074 19.7376 7.50956 19.0945 7.85226 18.4213C7.20135 18.1782 6.57311 17.8783 5.9748 17.525C6.13227 17.4108 6.28627 17.2931 6.43508 17.1789C8.17601 17.9977 10.0761 18.4221 12 18.4221C13.9238 18.4221 15.8239 17.9977 17.5648 17.1789C17.7154 17.3018 17.8694 17.4195 18.0251 17.525C17.4257 17.8789 16.7963 18.1794 16.1442 18.4231C16.4865 19.0959 16.8853 19.7385 17.3364 20.3438C19.3398 19.7397 21.224 18.795 22.9065 17.551C23.3633 12.8132 22.1261 8.70704 19.6361 5.06633ZM8.34541 15.0367C7.26047 15.0367 6.36414 14.0522 6.36414 12.8409C6.36414 11.6296 7.22932 10.6364 8.34195 10.6364C9.45458 10.6364 10.344 11.6296 10.325 12.8409C10.3059 14.0522 9.45112 15.0367 8.34541 15.0367ZM15.6545 15.0367C14.5678 15.0367 13.675 14.0522 13.675 12.8409C13.675 11.6296 14.5401 10.6364 15.6545 10.6364C16.7689 10.6364 17.6514 11.6296 17.6323 12.8409C17.6133 14.0522 16.7602 15.0367 15.6545 15.0367Z"/></svg>
+        </a>
+
+        <!-- Facebook -->
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61575378848836" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M23 12C23 5.92487 18.0751 0.999996 12 0.999996C5.92488 0.999996 1 5.92487 1 12C1 17.1588 4.55146 21.4874 9.34266 22.6761V15.3614H7.07438V12H9.34266V10.5516C9.34266 6.80751 11.037 5.07215 14.7128 5.07215C15.4096 5.07215 16.6121 5.20877 17.104 5.34544V8.39261C16.8444 8.36529 16.3935 8.3516 15.8332 8.3516C14.0295 8.3516 13.3326 9.03484 13.3326 10.8112V12H16.9256L16.3084 15.3614H13.3326V22.9194C18.7792 22.2616 23 17.624 23 12Z"/></svg>
+        </a>
+
+      </div>
+
+      <!-- Links -->
+      <div class="links">
+
+        <a class="link-btn" href="https://easydonate.app/chronelia" target="_blank" rel="noopener noreferrer">
+          <div class="link-icon">
+            <img src="assets/donate-icon.gif" alt="">
+          </div>
+          <span class="link-label">Pray Chronelia now</span>
+        </a>
+
+        <a class="link-btn" href="https://drive.google.com/drive/folders/1T66fc6LVt3-MW6-_pm0aypj8bbtQfs76" target="_blank" rel="noopener noreferrer">
+          <div class="link-icon">
+            <img src="assets/donate-icon.gif" alt="">
+          </div>
+          <span class="link-label">Wallpaper free</span>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
