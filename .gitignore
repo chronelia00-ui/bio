@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+private/*
+!private/.gitkeep
+data/
+preview-market.png

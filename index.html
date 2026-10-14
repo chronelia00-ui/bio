@@ -156,6 +156,11 @@
     }
 
     /* Avatar */
+    .avatar-wrap, .avatar-wrap img {
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+    }
     .avatar-wrap {
       position: relative;
       --avatar-size: clamp(100px, 40vw, 132px);
@@ -220,6 +225,41 @@
     }
     .social-btn:hover { transform: scale(1.075); }
     .social-btn svg { width: 32px; height: 32px; fill: currentColor; }
+
+    [hidden] { display: none !important; }
+    .page-tabs { display: flex; width: 100%; gap: 6px; padding: 6px; margin-bottom: 20px; border: 1px solid var(--btn-border); border-radius: var(--radius); background: rgba(255,255,255,.08); }
+    .page-tab { flex: 1; padding: 12px 18px; border: 0; border-radius: 22px; background: transparent; color: white; font: inherit; font-weight: 600; cursor: pointer; transition: background .15s; }
+    .page-tab[aria-selected="true"] { background: rgba(255,255,255,.24); }
+    .page-tab:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+    .market { width: 100%; padding: 32px 24px; text-align: center; background: var(--btn-bg); border: 1px solid var(--btn-border); border-radius: var(--radius); backdrop-filter: blur(12px); }
+    .market svg { width: 44px; height: 44px; margin-bottom: 16px; }
+    .market h2 { font-size: 22px; margin-bottom: 12px; }
+    .market p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.85); }
+    #market-products { display: grid; gap: 18px; margin-top: 20px; }
+    .cursor-particles { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; }
+    .cursor-particles img { position: absolute; pointer-events: none; object-fit: contain; will-change: transform, opacity; }
+    .language-switch { position: fixed; top: max(16px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); z-index: 100; display: flex; align-items: center; padding: 4px; border: 1px solid var(--btn-border); border-radius: 24px; background: rgba(35,32,70,.65); backdrop-filter: blur(12px); }
+    .language-switch button { border: 0; border-radius: 20px; background: transparent; color: white; padding: 8px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+    .language-switch button[aria-pressed="true"] { background: rgba(255,255,255,.25); }
+    .language-switch button:focus-visible, .market-category:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+    .market-categories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 22px 0; }
+    .market-category { padding: 16px 10px; border: 1px solid var(--btn-border); border-radius: 18px; color: white; background: rgba(255,255,255,.08); font: inherit; font-size: 14px; line-height: 1.5; cursor: pointer; }
+    .market-category:hover { background: rgba(255,255,255,.18); }
+    .market-category[aria-pressed="true"] { background: rgba(255,255,255,.26); border-color: rgba(255,255,255,.75); }
+    #market-category-title { margin-bottom: 8px; font-size: 19px; }
+    #market-category-description { margin-bottom: 14px; }
+    .product-card { padding: 16px; border: 1px solid var(--btn-border); border-radius: 20px; text-align: left; }
+    .product-card video { width: 100%; border-radius: 12px; margin-bottom: 12px; }
+    .product-card h3 { margin-bottom: 8px; }
+    .product-card button { width: 100%; margin-top: 12px; background: rgba(255,255,255,.16); opacity: .65; }
+    .product-card button:not(:disabled) { opacity: 1; }
+    .checkout { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--btn-border); }
+    #payment-qr { display: block; width: min(240px, 100%); margin: 16px auto; border-radius: 16px; }
+    #checkout-amount { font-size: 26px; font-weight: 700; margin: 10px 0; }
+    #slip-form { display: grid; gap: 12px; text-align: left; margin-top: 18px; }
+    #slip-image { width: 100%; font: inherit; }
+    .checkout-action { display: block; border: 1px solid var(--btn-border); border-radius: 22px; background: rgba(255,255,255,.2); color: white; padding: 14px; font: inherit; text-decoration: none; }
+    #checkout-status { margin-top: 16px; }
 
     /* Links */
     .links {
@@ -358,13 +398,18 @@
     </video>
   </div>
 
+  <div class="language-switch" role="group" aria-label="เลือกภาษา">
+    <button type="button" data-language="th" aria-pressed="true" aria-label="ภาษาไทย">TH</button>
+    <span aria-hidden="true">|</span>
+    <button type="button" data-language="en" aria-pressed="false" aria-label="English">EN</button>
+  </div>
   <div class="page">
     <div class="container">
 
       <!-- Avatar -->
       <div class="avatar-wrap">
-        <img class="avatar" src="assets/avatar.gif" alt="Chronelia">
-        <img class="avatar-frame" src="assets/frame.png" alt="" aria-hidden="true">
+        <img class="avatar" src="assets/avatar.gif" alt="Chronelia" draggable="false">
+        <img class="avatar-frame" src="assets/frame.png" alt="" aria-hidden="true" draggable="false">
       </div>
 
       <!-- Name -->
@@ -372,6 +417,16 @@
 
       <!-- Social icons -->
       <div class="socials">
+
+        <!-- Twitch -->
+        <a class="social-btn" href="https://www.twitch.tv/chronelia00" target="_blank" rel="noopener noreferrer" aria-label="Twitch" title="Twitch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.571 4.714h1.715v5.143h-1.715zm4.715 0H18v5.143h-1.714zM6 0 1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+        </a>
+
+        <!-- Kick -->
+        <a class="social-btn" href="https://kick.com/chronelia" target="_blank" rel="noopener noreferrer" aria-label="Kick" title="Kick">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 0h7.5v8h3V4H15V0h7.5v8H19v4h-3.5v4H19v8h-7.5v-8h-3v8H1z"/></svg>
+        </a>
 
         <!-- YouTube -->
         <a class="social-btn" href="https://www.youtube.com/@Chronelia" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
@@ -401,28 +456,87 @@
       </div>
 
       <!-- Links -->
-      <div class="links">
+      <div class="page-tabs" role="tablist" aria-label="หน้าของ Chronelia">
+        <button class="page-tab" type="button" role="tab" id="links-tab" aria-controls="links-panel" aria-selected="true">ลิงก์</button>
+        <button class="page-tab" type="button" role="tab" id="market-tab" aria-controls="market-panel" aria-selected="false" tabindex="-1">ตลาด</button>
+      </div>
+      <div class="links" id="links-panel" role="tabpanel" aria-labelledby="links-tab">
 
         <a class="link-btn" href="https://easydonate.app/chronelia" target="_blank" rel="noopener noreferrer">
           <div class="link-icon">
             <img src="assets/donate-icon.gif" alt="">
           </div>
-          <span class="link-label">Pray Chronelia now</span>
+          <span class="link-label">ภาวนาแด่โครเนเลีย(ให้ตัง)</span>
         </a>
 
         <a class="link-btn" href="https://drive.google.com/drive/folders/1T66fc6LVt3-MW6-_pm0aypj8bbtQfs76" target="_blank" rel="noopener noreferrer">
           <div class="link-icon">
             <img src="assets/donate-icon.gif" alt="">
           </div>
-          <span class="link-label">Wallpaper free</span>
+          <span class="link-label">ฟรีวอเปเปอร์</span>
         </a>
 
       </div>
 
+      <section class="market" id="market-panel" role="tabpanel" aria-labelledby="market-tab" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9v12h16V9M3 9l2-6h14l2 6M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M9 21v-7h6v7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h2>ตลาดของ Chronelia</h2>
+        <div class="market-categories" role="group" aria-label="เลือกหมวดสินค้าและบริการ">
+          <button class="market-category" type="button" data-category="backgrounds" aria-pressed="true" aria-controls="market-products">พื้นหลังสำเร็จรูป</button>
+          <button class="market-category" type="button" data-category="background-commissions" aria-pressed="false" aria-controls="market-products">คอมมิชชั่นพื้นหลัง</button>
+          <button class="market-category" type="button" data-category="website-commissions" aria-pressed="false" aria-controls="market-products">คอมมิชชั่นเว็บไซต์</button>
+          <button class="market-category" type="button" data-category="live2d" aria-pressed="false" aria-controls="market-products">โมเดล Live2D สำเร็จรูป</button>
+        </div>
+        <h3 id="market-category-title">พื้นหลังสำเร็จรูป</h3>
+        <p id="market-category-description">เลือกพื้นหลังสำหรับสตรีมและตกแต่งหน้าจอของคุณ</p>
+        <p id="market-message" role="status">ยังไม่มีพื้นหลังสำเร็จรูปในตอนนี้</p>
+        <div id="market-products"></div>
+        <section id="checkout" class="checkout" hidden aria-label="ชำระเงินและรับคลิป">
+          <h3 id="checkout-name">ชำระเงินผ่านแม่มณี</h3>
+          <p id="checkout-amount"></p>
+          <img id="payment-qr" alt="QR รับเงินแม่มณีของร้าน">
+          <p>สแกนจ่ายผ่านแอปธนาคาร แล้วแนบสลิปเพื่อรับคลิป</p>
+          <form id="slip-form">
+            <label for="slip-image">รูปสลิป (JPG, PNG, WEBP ไม่เกิน 5 MB)</label>
+            <input id="slip-image" type="file" accept="image/jpeg,image/png,image/webp" required>
+            <p>สลิปจะส่งให้ SlipOK เพื่อตรวจสอบการชำระเงิน</p>
+            <button class="checkout-action" type="submit">ตรวจสลิปและรับคลิป</button>
+          </form>
+          <p id="checkout-status" role="status" aria-live="polite"></p>
+          <a id="download-link" class="checkout-action" hidden>ดาวน์โหลดคลิปเต็ม</a>
+        </section>
+      </section>
+
     </div>
   </div>
 
+  <script src="language.js" defer></script>
+  <script src="cursor-particles.js" defer></script>
+  <script src="shop.js" defer></script>
   <script>
+    const pageTabs = Array.from(document.querySelectorAll('.page-tab'));
+    function selectPageTab(tab) {
+      pageTabs.forEach(function (item) {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+      });
+    }
+    pageTabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () { selectPageTab(tab); });
+      tab.addEventListener('keydown', function (event) {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % pageTabs.length;
+        if (event.key === 'ArrowLeft') next = (index + pageTabs.length - 1) % pageTabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = pageTabs.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        selectPageTab(pageTabs[next]);
+        pageTabs[next].focus();
+      });
+    });
     let autoScroll = null;
     let autoScrollFrame = 0;
 
