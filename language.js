@@ -1,5 +1,11 @@
 (() => {
   const translations = {
+    'ตัวอย่างที่ 2 — Lucien Bio': 'Example 2 — Lucien Bio',
+    'เปิดดูตัวอย่างที่ 2': 'Open example 2',
+    'ดูตัวอย่างเว็บคอมมิชชั่น': 'View website commission examples',
+    'ตัวอย่างที่ 1 — Chronelia Bio': 'Example 1 — Chronelia Bio',
+    'เว็บนี้: หน้าแนะนำตัว รวมโซเชียลและหน้าตลาด': 'This website: a profile page with social links and a shop.',
+    'เปิดดูตัวอย่างที่ 1': 'Open example 1',
     'ดูตัวอย่างเว็บไซต์ Bio': 'View example Bio website',
     'เปิดรับคอมมิชชั่นเว็บไซต์แล้ว': 'Website commissions are now open.',
     'รายละเอียดคอมมิชชั่นเว็บไซต์': 'Website commission details',

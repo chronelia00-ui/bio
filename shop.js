@@ -4,6 +4,12 @@ const checkout = document.getElementById('checkout');
 const checkoutStatus = document.getElementById('checkout-status');
 const slipForm = document.getElementById('slip-form');
 const downloadLink = document.getElementById('download-link');
+const examplesToggle = document.getElementById('website-examples-toggle');
+examplesToggle.addEventListener('click', () => {
+  const examples = document.getElementById('website-examples');
+  examples.hidden = !examples.hidden;
+  examplesToggle.setAttribute('aria-expanded', String(!examples.hidden));
+});
 let currentOrder;
 let selectedCategory = 'backgrounds';
 const categories = {
