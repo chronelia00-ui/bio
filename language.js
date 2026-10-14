@@ -1,5 +1,12 @@
 (() => {
   const translations = {
+    'ดูตัวอย่างเว็บไซต์ Bio': 'View example Bio website',
+    'เปิดรับคอมมิชชั่นเว็บไซต์แล้ว': 'Website commissions are now open.',
+    'รายละเอียดคอมมิชชั่นเว็บไซต์': 'Website commission details',
+    'เว็บไซต์ในสไตล์ของคุณ': 'A website in your style',
+    'รับทำหน้าแนะนำตัว หน้ารวมลิงก์ และเว็บไซต์แสดงผลงาน พร้อมปรับให้ใช้งานได้ทั้งบนคอมและมือถือ': 'Commission a profile page, link page, or portfolio website designed for desktop and mobile.',
+    'ส่งรายละเอียดงาน ตัวอย่างที่ชอบ และกำหนดเวลาที่ต้องการ เพื่อคุยขอบเขตงานและประเมินราคาก่อนเริ่ม': 'Share your brief, references, and preferred deadline so we can agree on the scope and quote before starting.',
+    'ติดต่อสั่งทำเว็บไซต์ผ่าน Discord': 'Request a website via Discord',
     'ภาวนาแด่โครเนเลีย(ให้ตัง)': 'Pray Chronelia now', 'ฟรีวอเปเปอร์': 'Wallpaper free',
     'ลิงก์': 'Links', 'ตลาด': 'Shop', 'ตลาดของ Chronelia': 'Chronelia Shop',
     'เลือกภาษา': 'Select language', 'ภาษาไทย': 'Thai', 'หน้าของ Chronelia': 'Chronelia pages',

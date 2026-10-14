@@ -9,10 +9,11 @@ let selectedCategory = 'backgrounds';
 const categories = {
   backgrounds: { name: 'พื้นหลังสำเร็จรูป', description: 'เลือกพื้นหลังสำหรับสตรีมและตกแต่งหน้าจอของคุณ', empty: 'ยังไม่มีพื้นหลังสำเร็จรูปในตอนนี้' },
   'background-commissions': { name: 'คอมมิชชั่นพื้นหลัง', description: 'พื้นหลังที่ออกแบบตามธีมและสไตล์ของคุณ', empty: 'ยังไม่เปิดรับคอมมิชชั่นพื้นหลังในตอนนี้' },
-  'website-commissions': { name: 'คอมมิชชั่นเว็บไซต์', description: 'เว็บไซต์สำหรับแนะนำตัว รวมลิงก์ หรือแสดงผลงานของคุณ', empty: 'ยังไม่เปิดรับคอมมิชชั่นเว็บไซต์ในตอนนี้' },
+  'website-commissions': { name: 'คอมมิชชั่นเว็บไซต์', description: 'เว็บไซต์สำหรับแนะนำตัว รวมลิงก์ หรือแสดงผลงานของคุณ', empty: 'เปิดรับคอมมิชชั่นเว็บไซต์แล้ว' },
   live2d: { name: 'โมเดล Live2D สำเร็จรูป', description: 'เลือกโมเดล Live2D สำหรับตัวตนใหม่ของคุณ', empty: 'ยังไม่มีโมเดล Live2D สำเร็จรูปในตอนนี้' }
 };
 function filterProducts() {
+  document.getElementById('website-commission-details').hidden = selectedCategory !== 'website-commissions';
   const category = categories[selectedCategory];
   document.getElementById('market-category-title').textContent = category.name;
   document.getElementById('market-category-description').textContent = category.description;

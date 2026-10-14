@@ -203,18 +203,22 @@
 
     /* Social icons row */
     .socials {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr);
+      width: 100%;
+      max-width: 360px;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: clamp(0px, 1vw, 4px);
       margin-bottom: 28px;
     }
     .social-btn {
       background: transparent;
       border: none;
       cursor: pointer;
-      padding: 8px;
+      min-width: 0;
+      padding: clamp(3px, 1.5vw, 8px);
       color: #ffffff;
       display: flex;
       align-items: center;
@@ -224,7 +228,7 @@
       text-decoration: none;
     }
     .social-btn:hover { transform: scale(1.075); }
-    .social-btn svg { width: 32px; height: 32px; fill: currentColor; }
+    .social-btn svg { width: 100%; max-width: 32px; height: auto; aspect-ratio: 1; fill: currentColor; }
 
     [hidden] { display: none !important; }
     .page-tabs { display: flex; width: 100%; gap: 6px; padding: 6px; margin-bottom: 20px; border: 1px solid var(--btn-border); border-radius: var(--radius); background: rgba(255,255,255,.08); }
@@ -490,6 +494,13 @@
         <h3 id="market-category-title">พื้นหลังสำเร็จรูป</h3>
         <p id="market-category-description">เลือกพื้นหลังสำหรับสตรีมและตกแต่งหน้าจอของคุณ</p>
         <p id="market-message" role="status">ยังไม่มีพื้นหลังสำเร็จรูปในตอนนี้</p>
+        <section id="website-commission-details" class="product-card" hidden aria-label="รายละเอียดคอมมิชชั่นเว็บไซต์">
+          <h3>เว็บไซต์ในสไตล์ของคุณ</h3>
+          <p>รับทำหน้าแนะนำตัว หน้ารวมลิงก์ และเว็บไซต์แสดงผลงาน พร้อมปรับให้ใช้งานได้ทั้งบนคอมและมือถือ</p>
+          <p>ส่งรายละเอียดงาน ตัวอย่างที่ชอบ และกำหนดเวลาที่ต้องการ เพื่อคุยขอบเขตงานและประเมินราคาก่อนเริ่ม</p>
+          <a class="checkout-action" href="/" target="_blank" rel="noopener noreferrer" style="margin-top:16px;text-align:center">ดูตัวอย่างเว็บไซต์ Bio</a>
+          <a class="checkout-action" href="https://discord.gg/q6usRaYCcT" target="_blank" rel="noopener noreferrer" style="margin-top:10px;text-align:center">ติดต่อสั่งทำเว็บไซต์ผ่าน Discord</a>
+        </section>
         <div id="market-products"></div>
         <section id="checkout" class="checkout" hidden aria-label="ชำระเงินและรับคลิป">
           <h3 id="checkout-name">ชำระเงินผ่านแม่มณี</h3>
