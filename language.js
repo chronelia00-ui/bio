@@ -1,5 +1,7 @@
 (() => {
   const translations = {
+    'ตัวอย่างที่ 3 — Hongthai Bio': 'Example 3 — Hongthai Bio',
+    'เปิดดูตัวอย่างที่ 3': 'Open example 3',
     'ตัวอย่างที่ 1 — Elune Bio': 'Example 1 — Elune Bio',
     'ตัวอย่างที่ 1': 'Example 1',
     'เร็ว ๆ นี้': 'Coming soon',
