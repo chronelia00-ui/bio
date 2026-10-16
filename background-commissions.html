@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คอมมิชชั่นพื้นหลัง | Chronelia</title>
+<link rel="stylesheet" href="market-page.css">
+</head>
+<body class="category-page">
+  <!-- Layer PC: full cover landscape -->
+  <div class="bg-pc">
+    <video autoplay loop muted playsinline>
+      <source src="assets/bg-pc.mp4" type="video/mp4">
+    </video>
+    <div class="bg-tint"></div>
+  </div>
+
+  <!-- Layer 2: portrait video full visible -->
+  <div class="bg-portrait">
+    <video autoplay loop muted playsinline>
+      <source src="assets/bg-mobile.mp4" type="video/mp4">
+    </video>
+  </div>
+
+
+  <div class="language-switch" role="group" aria-label="เลือกภาษา">
+    <button type="button" data-language="th" aria-pressed="true" aria-label="ภาษาไทย">TH</button>
+    <span aria-hidden="true">|</span>
+    <button type="button" data-language="en" aria-pressed="false" aria-label="English">EN</button>
+  </div>
+
+<main class="page"><div class="container">
+<a class="back-to-market" href="index.html#market">← กลับไปตลาด</a>
+<section class="market"><h1 style="font-size:26px;margin-bottom:20px">คอมมิชชั่นพื้นหลัง</h1><p role="status">จะเปิดรับเร็ว ๆ นี้</p></section>
+</div></main>
+<script src="language.js" defer></script>
+<script src="cursor-particles.js" defer></script>
+<script src="market-page.js" defer></script>
+</body></html>

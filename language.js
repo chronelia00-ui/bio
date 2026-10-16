@@ -1,5 +1,7 @@
 (() => {
   const translations = {
+    'จะเปิดรับเร็ว ๆ นี้': 'Opening soon',
+    '← กลับไปตลาด': '← Back to shop',
     'ตัวอย่างที่ 3 — Hongthai Bio': 'Example 3 — Hongthai Bio',
     'เปิดดูตัวอย่างที่ 3': 'Open example 3',
     'ตัวอย่างที่ 1 — Elune Bio': 'Example 1 — Elune Bio',

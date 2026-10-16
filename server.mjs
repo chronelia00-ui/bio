@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { createShop } from './payments.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.gif': 'image/gif', '.mp4': 'video/mp4', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.webp': 'image/webp' };
+const mime = { '.css': 'text/css; charset=utf-8', '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.gif': 'image/gif', '.mp4': 'video/mp4', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.webp': 'image/webp' };
 export function createServer(options = {}) {
   const shop = createShop({ root, ...options });
   const server = http.createServer(async (req, res) => {
@@ -21,7 +21,7 @@ export function createServer(options = {}) {
       }
       const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
       const asset = /^assets\/(?!.*(?:^|\/)\.)[a-zA-Z0-9_./-]+$/.test(relative) && !relative.includes('..');
-      if (!['index.html', 'shop.js', 'language.js', 'cursor-particles.js'].includes(relative) && !asset) {
+      if (!['index.html', 'shop.js', 'language.js', 'cursor-particles.js', 'market-page.js', 'market-page.css', 'backgrounds.html', 'background-commissions.html', 'website-commissions.html', 'live2d.html'].includes(relative) && !asset) {
         res.writeHead(404); return res.end('Not found');
       }
       const allowedRoot = asset ? await realpath(path.join(root, 'assets')) : await realpath(root);

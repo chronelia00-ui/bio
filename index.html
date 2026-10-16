@@ -486,50 +486,11 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9v12h16V9M3 9l2-6h14l2 6M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M9 21v-7h6v7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h2>ตลาดของ Chronelia</h2>
         <div class="market-categories" role="group" aria-label="เลือกหมวดสินค้าและบริการ">
-          <button class="market-category" type="button" data-category="backgrounds" aria-pressed="true" aria-controls="market-products">พื้นหลังสำเร็จรูป</button>
-          <button class="market-category" type="button" data-category="background-commissions" aria-pressed="false" aria-controls="market-products">คอมมิชชั่นพื้นหลัง</button>
-          <button class="market-category" type="button" data-category="website-commissions" aria-pressed="false" aria-controls="market-products">คอมมิชชั่นเว็บไซต์</button>
-          <button class="market-category" type="button" data-category="live2d" aria-pressed="false" aria-controls="market-products">โมเดล Live2D สำเร็จรูป</button>
+          <a class="market-category" href="backgrounds.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">พื้นหลังสำเร็จรูป</a>
+          <a class="market-category" href="background-commissions.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">คอมมิชชั่นพื้นหลัง</a>
+          <a class="market-category" href="website-commissions.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">คอมมิชชั่นเว็บไซต์</a>
+          <a class="market-category" href="live2d.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">โมเดล Live2D สำเร็จรูป</a>
         </div>
-        <h3 id="market-category-title">พื้นหลังสำเร็จรูป</h3>
-        <p id="market-category-description">เลือกพื้นหลังสำหรับสตรีมและตกแต่งหน้าจอของคุณ</p>
-        <p id="market-message" role="status">ยังไม่มีพื้นหลังสำเร็จรูปในตอนนี้</p>
-        <section id="website-commission-details" class="product-card" hidden aria-label="รายละเอียดคอมมิชชั่นเว็บไซต์">
-          <h3>เว็บไซต์ในสไตล์ของคุณ</h3>
-          <p>รับทำหน้าแนะนำตัว หน้ารวมลิงก์ และเว็บไซต์แสดงผลงาน พร้อมปรับให้ใช้งานได้ทั้งบนคอมและมือถือ</p>
-          <p>ส่งรายละเอียดงาน ตัวอย่างที่ชอบ และกำหนดเวลาที่ต้องการ เพื่อคุยขอบเขตงานและประเมินราคาก่อนเริ่ม</p>
-          <button id="website-examples-toggle" class="checkout-action" type="button" aria-expanded="false" aria-controls="website-examples" style="margin-top:16px;width:100%;text-align:center;cursor:pointer">ดูตัวอย่างเว็บคอมมิชชั่น</button>
-          <div id="website-examples" hidden style="margin-top:12px">
-            <article class="product-card">
-              <h3>ตัวอย่างที่ 1 — Elune Bio</h3>
-              <a class="checkout-action" href="https://elune-bio.pages.dev/" target="_blank" rel="noopener noreferrer" style="margin-top:12px;text-align:center">เปิดดูตัวอย่างที่ 1</a>
-            </article>
-            <article class="product-card" style="margin-top:12px">
-              <h3>ตัวอย่างที่ 2 — Lucien Bio</h3>
-              <a class="checkout-action" href="https://lucien-bio.pages.dev/" target="_blank" rel="noopener noreferrer" style="margin-top:12px;text-align:center">เปิดดูตัวอย่างที่ 2</a>
-            </article>
-            <article class="product-card" style="margin-top:12px">
-              <h3>ตัวอย่างที่ 3 — Hongthai Bio</h3>
-              <a class="checkout-action" href="https://hongthai-bio.pages.dev/" target="_blank" rel="noopener noreferrer" style="margin-top:12px;text-align:center">เปิดดูตัวอย่างที่ 3</a>
-            </article>
-          </div>
-          <a class="checkout-action" href="https://discord.gg/q6usRaYCcT" target="_blank" rel="noopener noreferrer" style="margin-top:10px;text-align:center">ติดต่อสั่งทำเว็บไซต์ผ่าน Discord</a>
-        </section>
-        <div id="market-products"></div>
-        <section id="checkout" class="checkout" hidden aria-label="ชำระเงินและรับคลิป">
-          <h3 id="checkout-name">ชำระเงินผ่านแม่มณี</h3>
-          <p id="checkout-amount"></p>
-          <img id="payment-qr" alt="QR รับเงินแม่มณีของร้าน">
-          <p>สแกนจ่ายผ่านแอปธนาคาร แล้วแนบสลิปเพื่อรับคลิป</p>
-          <form id="slip-form">
-            <label for="slip-image">รูปสลิป (JPG, PNG, WEBP ไม่เกิน 5 MB)</label>
-            <input id="slip-image" type="file" accept="image/jpeg,image/png,image/webp" required>
-            <p>สลิปจะส่งให้ SlipOK เพื่อตรวจสอบการชำระเงิน</p>
-            <button class="checkout-action" type="submit">ตรวจสลิปและรับคลิป</button>
-          </form>
-          <p id="checkout-status" role="status" aria-live="polite"></p>
-          <a id="download-link" class="checkout-action" hidden>ดาวน์โหลดคลิปเต็ม</a>
-        </section>
       </section>
 
     </div>
@@ -537,7 +498,7 @@
 
   <script src="language.js" defer></script>
   <script src="cursor-particles.js" defer></script>
-  <script src="shop.js" defer></script>
+  <script src="market-page.js" defer></script>
   <script>
     const pageTabs = Array.from(document.querySelectorAll('.page-tab'));
     function selectPageTab(tab) {
